@@ -20,11 +20,19 @@ with open(r'data\typelist.json', 'r') as f2:
 # FUNCTION DECLARATIONS */
 print 'Build Number \n http://www.diablofans.com/builds/88437'
 buildnumber = raw_input('E.G. 88437: ' )
+while True:
+    try:
+        url = 'http://www.diablofans.com/builds/{}'.format(buildnumber)
+        page = urllib2.urlopen(url)
+        break
+    except urllib2.URLError:
+        print ('Url not found check build number')
+        buildnumber = raw_input('Build number: ')
+    except Exception:
+        print ('Exception')
+    
 fourthree = raw_input('Items must roll with all stats or stats - 1? \n E.G. If a helm needs Socket, CHC, Int, Vit roll with 4 or 3? \n [4\\3]: ')
 buildtype = raw_input(r'Full file or just the build? [Full\Build]: ').lower()
-    
-url = 'http://www.diablofans.com/builds/{}'.format(buildnumber)
-page = urllib2.urlopen(url)
 
 i=0
 equalstring = '=================='
