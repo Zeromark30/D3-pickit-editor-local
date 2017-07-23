@@ -171,7 +171,7 @@ def generateAtLeastString(statCount, stats):
   if fourthree == '4':
     string += str(statCount) + ', '
   else:
-    string += str(statCount -1) + ','
+    string += str(statCount -1) + ', '
   j=0
   while j<len(stats):
     pickit = getPickitStat(stats[j])
