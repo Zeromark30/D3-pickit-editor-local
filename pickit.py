@@ -211,19 +211,19 @@ print ''
 
 if buildtype == "full":
     with open(r'data\essentials.txt', 'r') as essentials:
-        with open('pickit_sc_70.ini', 'w') as a_file:
+        with open('output/pickit_sc_70.ini', 'w') as a_file:
             a_file.write(essentials.read())
             a_file.write('\n')        
-    with open('pickit_sc_70.ini', 'a') as a_file:
+    with open('output/pickit_sc_70.ini', 'a') as a_file:
         pickitList += '\n'
         a_file.write(pickitList)
     if buildtype == "full":
         with open(r'data\essentials2.txt', 'r') as essentials2:
-            with open('pickit_sc_70.ini', 'a') as a_file:
+            with open('output/pickit_sc_70.ini', 'a') as a_file:
                 a_file.write(essentials2.read())
     print('INFO | save successful')
 else:
-    with open(buildnumber + '.ini', 'w') as a_file:
+    with open('output/' + buildnumber + '.ini', 'w') as a_file:
         pickitList += '\n'
         a_file.write(pickitList)
     print('INFO | save successful')
