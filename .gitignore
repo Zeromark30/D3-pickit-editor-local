@@ -50,5 +50,9 @@ Importer/
 *.rar
 *.bat
 scrap.py
+scrap - Copy.py
+build.html
 setup.py
 output/
+*.zip
+build/
