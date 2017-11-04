@@ -51,3 +51,4 @@ Importer/
 *.bat
 scrap.py
 setup.py
+output/

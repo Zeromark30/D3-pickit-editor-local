@@ -111,10 +111,18 @@ resObj['item_rings']     = getItemSlot('rings')
 resObj['item_weapon']    = getItemSlot('weapon')
 resObj['item_offhand']   = getItemSlot('offhand')
 
-resObj['kanai_weapon']   = soup.select('#kanai-weapon .db-title span')[0].get_text()
-resObj['kanai_armor']    = soup.select('#kanai-armor .db-title span')[0].get_text()
-resObj['kanai_jewelry']  = soup.select('#kanai-jewelry .db-title span')[0].get_text()
-
+if soup.select('#kanai-weapon .db-title span'):
+    resObj['kanai_weapon']   = soup.select('#kanai-weapon .db-title span')[0].get_text()
+    print 'Kanai Weapon Slot | NAME={}'.format(resObj['kanai_weapon'])
+    
+if soup.select('#kanai-armor .db-title span'):    
+    resObj['kanai_armor']    = soup.select('#kanai-armor .db-title span')[0].get_text()
+    print 'Kanai Armor Slot | NAME={}'.format(resObj['kanai_armor'])
+    
+if soup.select('#kanai-jewelry .db-title span'):    
+    resObj['kanai_jewelry']  = soup.select('#kanai-jewelry .db-title span')[0].get_text()
+    print 'Kanai Jewelry Slot | NAME={}'.format(resObj['kanai_jewelry'])
+    
 #print resObj
 #print resObj['item_head']
 
@@ -145,9 +153,9 @@ def generateString(item):
         atleastString = generateAtLeastString(statCount, stats)
         type = getItemType(item['items'][k])
 
-        string += type + ' = name=' + name + ' ' + atleastString + ' '
+        string += type + ' = name=' + name + ' ' + atleastString + '\n'
 
-        string += '\n'
+        #string += '\n'
         k += 1
     global pickitList
     pickitList += string
