@@ -48,11 +48,12 @@ Temporary Items
 dist/
 Importer/
 *.rar
-*.bat
 scrap.py
 scrap - Copy.py
 build.html
-setup.py
 output/
-*.zip
+#*.zip
 build/
+
+#Python setuputils related files and folders
+*.egg-info
