@@ -6,5 +6,5 @@ if __name__ == '__main__':
     import os.path, sys
     sys.path.insert(0, os.path.join(os.path.dirname(os.path.realpath(__file__)), os.pardir))    
     
-    from pickit-cl import pickit-cl    
+    from pickit-cl import pickit_cl    
     main.run()

@@ -22,10 +22,10 @@ from youtube_upload import lib
 #from urllib.request import URLError
 try:
     import urllib2
-    import pickit_cl_ori_py2 as pickit_cl_ori
+    import lib.pickit_cl_ori_py2 as pickit_cl_ori
 except ImportError:
     import urllib.request as urllib2
-    import pickit_cl_ori_py3 as pickit_cl_ori
+    import lib.pickit_cl_ori_py3 as pickit_cl_ori
 
 import time
 
