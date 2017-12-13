@@ -14,7 +14,7 @@ setup(
     scripts= ["bin/pickit-cl"],
     entry_points={
         'console_scripts': [
-            'pickit-cl = pickit-cl.pickit_cl:run'
+            'pickit-cl = pickit_cl.pickit_cl:run'
         ],
     },
 )
