@@ -1,0 +1,1 @@
+python %~dp0pickit_cl.py %*
