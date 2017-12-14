@@ -6,7 +6,6 @@ try:
     import urllib2
 except ImportError:
     import urllib.request as urllib2
-    #from zipfile import ZipFile as open
 
 from bs4 import BeautifulSoup
 from collections import OrderedDict
