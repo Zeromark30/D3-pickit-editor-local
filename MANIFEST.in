@@ -1,6 +1,0 @@
-include setup.py
-include pavement.py
-include paver-minilib.zip
-include bin/pickit-cl.bat
-recursive-include pickit_cl *
-recursive-exclude pickit_cl/data *.py
