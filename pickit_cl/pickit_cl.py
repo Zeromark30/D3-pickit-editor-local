@@ -118,7 +118,7 @@ def main(arguments):
     
     usage = """Usage: %prog [OPTIONS] BUILDNUMBER [BUILDNUMBER2 ...]
 
-    Download Builds from http://www.diablofans.com/builds/ with the given Buildnumber."""
+    Download Builds from http://www.diablofans.com/builds/BUILDNUMBER (like 57405) with the given Buildnumber."""
     parser = optparse.OptionParser(usage=usage)
     
     parser.add_option('', '--number-file', dest='number_file', 
