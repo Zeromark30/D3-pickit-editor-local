@@ -1,13 +1,20 @@
 import json
 import requests
+import os
 import sys
 try:
     import urllib2
 except ImportError:
     import urllib.request as urllib2
-        
+    #from zipfile import ZipFile as open
+
 from bs4 import BeautifulSoup
 from collections import OrderedDict
+
+abs_dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, abs_dir_path)
+#print(sys.path)
+os.chdir(abs_dir_path)
 
 # GLOBAL VARIABLES */
 

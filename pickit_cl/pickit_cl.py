@@ -15,6 +15,9 @@ Upload all videos in given folder to Youtube from the command-line which.
 """
 import os
 import sys
+abs_dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, abs_dir_path)
+#print(sys.path)
 from pathlib import Path
 import optparse
 from youtube_upload import lib
@@ -25,7 +28,7 @@ try:
     #from .lib import pickit_cl_ori_py2 as pickit_cl_ori
 except ImportError:
     import urllib.request as urllib2
-    from . import pickit_cl_ori_py3 as pickit_cl_ori
+    import pickit_cl_ori_py3 as pickit_cl_ori
 
 import time
 
@@ -84,7 +87,6 @@ def run_main(parser, options, args, output=sys.stdout):
     parse_options_error(parser, options, args)
     #args = '53544'
     #print("args: {}".format(args))
-    
     build_numbers = []
     if options.use_number_file:
         with open('{}'.format(options.number_file), 'r') as number_file:
@@ -114,21 +116,21 @@ def run_main(parser, options, args, output=sys.stdout):
 def main(arguments):
     """Define the usage and the options. And then parses the given options/args and give this to run_main()."""
     
-    usage = """Usage: %prog [OPTIONS] NUMBER [NUMBER2 ...]
+    usage = """Usage: %prog [OPTIONS] BUILDNUMBER [BUILDNUMBER2 ...]
 
-    Uploads all videos in the folders to Youtube."""
+    Download Builds from http://www.diablofans.com/builds/ with the given Buildnumber."""
     parser = optparse.OptionParser(usage=usage)
     
     parser.add_option('', '--number-file', dest='number_file', 
-        default = 'build_numbers.txt', help='Path to the build_numbers.txt')
+        default = 'build_numbers.txt', help='Path to a file containing a list of Buildnumbers. [build_numbers.txt]')
     parser.add_option('-f', '--use-number-file', action="store_true",dest='use_number_file',
-        default=False, help=r'Use build_numers.txt as input.')
+        default=False, help=r'Use build_numers.txt as input. [False]')
     parser.add_option('', '--fourthree', dest='fourthree', type="int", 
-        default = 3, help='Items must roll with all stats or stats - 1? \n E.G. If a helm needs Socket, CHC, Int, Vit roll with 4 or 3? \n [4\\3]')
+        default = 3, help='Items must roll with all stats or stats - 1? \n E.G. If a helm needs Socket, CHC, Int, Vit roll with 4 or 3? [3]')
     parser.add_option('-b', '--buildtype', dest='buildtype', metavar="STRING",
-        default="build", help=r'Full file or just the build? [Full\Build]')
+        default="build", help=r'Full file or just the build? (Full\Build) [Build]')
     parser.add_option('-s', '--severalfiles', action="store_false",dest='onefile',
-        default=True, help=r'Write all Builds in several Files. Default is just one File.')
+        default=True, help=r'Write all Builds in several Files. Default is just one File. [True]')
 
     
     #Fixes bug for the .exe in windows: The help will be displayed, when no arguments are given.
