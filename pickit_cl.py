@@ -98,13 +98,13 @@ def run_main(parser, options, args, output=sys.stdout):
         pattern = re.compile('([^#]*)(#)(.*)')
         with open('{}'.format(options.number_file), 'r') as number_file:
             splited = str(number_file.read()).split('\n')
-            print('splited: {}'.format(splited))
+            # print('splited: {}'.format(splited))
             for string in splited:
                 f = pattern.findall(string)
                 if len(f) is 0:
                     build_numbers.append(string.strip())
                 else:
-                    print("f[0][0]: {}".format(f[0][0]))
+                    # print("f[0][0]: {}".format(f[0][0]))
                     build_numbers.append(f[0][0].strip())
 
     else:
@@ -128,7 +128,7 @@ def run_main(parser, options, args, output=sys.stdout):
 
     if len(build_numbers) is 0:
         raise OptionsError("No existing Buildnumbers given.")
-    print('build_numbers: {}'.format(build_numbers))
+    # print('build_numbers: {}'.format(build_numbers))
 
     run_pickit(build_numbers, options, args)
 
