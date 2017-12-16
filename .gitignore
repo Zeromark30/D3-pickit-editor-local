@@ -48,7 +48,7 @@ Temporary Items
 dist/
 Importer/
 *.rar
-*.bat
+#*.bat
 scrap.py
 scrap - Copy.py
 build.html
@@ -56,3 +56,4 @@ setup.py
 output/
 *.zip
 build/
+__pychache__/
