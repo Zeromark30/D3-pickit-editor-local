@@ -10,11 +10,11 @@ Install the _pickit-cl_ by download and extract it.
 
     wget https://github.com/tokland/tkersten09/pickit-cl/archive/master.zip
     unzip master.zip
-    cd youtube-upload-master
+    cd pickit-cl
     sudo python setup.py install
 
 
     wget https://github.com/tkersten09/pickit-cl/archive/drop-packaging.zip
-    unzip master.zip
-    cd youtube-upload-master
+    unzip drop-packaging.zip
+    cd pickit-cl
     sudo python setup.py install

@@ -5,13 +5,8 @@
 # Author: Arnau Sanchez <pyarnau@gmail.com>
 # Project: https://github.com/tokland/youtube-upload
 """
-Upload all videos in given folder to Youtube from the command-line which.
-
-    $ pickit-cl --endingse="mp4, mpg" \
-                     --description="Anne Sophie Mutter plays Beethoven" \
-                     --category=Music \
-                     --tags="mutter, beethoven" \
-                     IDs.txt
+Download Builds from http://www.diablofans.com/builds/BUILDNUMBER (like 57405) with the given Buildnumber. And stores them into output/*.ini for TurboHUD.
+    $ pickit-cl --use-number-file --fourthree=4 --buildtype="full"
 """
 import os
 import sys
@@ -20,15 +15,9 @@ sys.path.insert(0, abs_dir_path)
 #print(sys.path)
 from pathlib import Path
 import optparse
-from youtube_upload import lib
-#from urllib.request import urlopen
-#from urllib.request import URLError
-try:
-    import urllib2
-    #from .lib import pickit_cl_ori_py2 as pickit_cl_ori
-except ImportError:
-    import urllib.request as urllib2
-    import pickit_cl_ori_py3 as pickit_cl_ori
+
+import urllib.request as urllib2
+import lib.pickit_cl_ori_py3 as pickit_cl_ori
 
 import time
 
@@ -118,14 +107,14 @@ def main(arguments):
     
     usage = """Usage: %prog [OPTIONS] BUILDNUMBER [BUILDNUMBER2 ...]
 
-    Download Builds from http://www.diablofans.com/builds/BUILDNUMBER (like 57405) with the given Buildnumber."""
+    Download Builds from http://www.diablofans.com/builds/BUILDNUMBER (like 57405) with the given Buildnumber. And stores them into output/*.ini for TurboHUD."""
     parser = optparse.OptionParser(usage=usage)
     
     parser.add_option('', '--number-file', dest='number_file', 
         default = 'build_numbers.txt', help='Path to a file containing a list of Buildnumbers. [build_numbers.txt]')
     parser.add_option('-f', '--use-number-file', action="store_true",dest='use_number_file',
         default=False, help=r'Use build_numers.txt as input. [False]')
-    parser.add_option('', '--fourthree', dest='fourthree', type="int", 
+    parser.add_option('-4', '--fourthree', dest='fourthree', type="int", 
         default = 3, help='Items must roll with all stats or stats - 1? \n E.G. If a helm needs Socket, CHC, Int, Vit roll with 4 or 3? [3]')
     parser.add_option('-b', '--buildtype', dest='buildtype', metavar="STRING",
         default="build", help=r'Full file or just the build? (Full\Build) [Build]')

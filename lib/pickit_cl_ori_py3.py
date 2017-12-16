@@ -12,8 +12,9 @@ from collections import OrderedDict
 
 abs_dir_path = os.path.dirname(os.path.realpath(__file__))
 sys.path.insert(0, abs_dir_path)
-#print(sys.path)
-os.chdir(abs_dir_path)
+
+# change working directory to one folder up
+os.chdir(abs_dir_path + "/../")
 
 # GLOBAL VARIABLES */
 
@@ -209,12 +210,6 @@ def main(buildnumber, fourthree, buildtype):
           string += ']'
           j +=1
           return string  
-
-    if buildtype == "full":
-        with open(r'data\essentials.txt', 'r') as essentials:
-            with open('pickit_sc_70.ini', 'w') as a_file:
-                a_file.write(essentials.read())
-                a_file.write('\n')
         
     pickitList = ';||||' + resObj['build_class'] + '-Build: ' + resObj['build_name'] + ' Link: ' + resObj['build_url'] + ' ||||\n'
 
