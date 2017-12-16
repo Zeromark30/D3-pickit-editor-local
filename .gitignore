@@ -56,4 +56,4 @@ setup.py
 output/
 *.zip
 build/
-__pychache__
+__pychache__/
