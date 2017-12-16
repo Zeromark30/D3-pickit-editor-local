@@ -12,19 +12,20 @@ And stores them into output/*.ini for TurboHUD.
 """
 import os
 import sys
-abs_dir_path = os.path.dirname(os.path.realpath(__file__))
-sys.path.insert(0, abs_dir_path)
-#print(sys.path)
-from pathlib import Path
 import optparse
 
 import urllib.request as urllib2
 import lib.pickit_cl_ori_py3 as pickit_cl_ori
 
-import time
 import re
 
-class OptionsError(Exception): pass
+abs_dir_path = os.path.dirname(os.path.realpath(__file__))
+sys.path.insert(0, abs_dir_path)
+# print(sys.path)
+
+
+class OptionsError(Exception):
+    pass
 
 
 EXIT_CODES = {
@@ -55,14 +56,24 @@ def run_pickit(build_numbers, options, args):
     """Parse all files in file_list by using tokland/youtube-upload script."""
     pickitList_list = []
     for buildnumber in build_numbers:
-        pickitList_list.append(pickit_cl_ori.main(buildnumber=buildnumber, fourthree=options.fourthree, buildtype=options.buildtype))
-
+        pick = pickit_cl_ori.main(
+            buildnumber=buildnumber,
+            fourthree=options.fourthree,
+            buildtype=options.buildtype)
+        pickitList_list.append(pick)
     if options.onefile:
         builds_string = "\n".join(pickitList_list)
-        pickit_cl_ori.write_output(buildnumber='builds', buildtype=options.buildtype, pickitList=builds_string)
+        pickit_cl_ori.write_output(
+            buildnumber='builds',
+            buildtype=options.buildtype,
+            pickitList=builds_string)
     else:
         for buildnumber in build_numbers:
-            pickit_cl_ori.write_output(buildnumber=buildnumber, buildtype=options.buildtype, pickitList=pickitList)
+            pickit_cl_ori.write_output(
+                buildnumber=buildnumber,
+                buildtype=options.buildtype,
+                pickitList=pickitList_list)
+
 
 def parse_options_error(parser, options, args):
     """Check errors in options."""
@@ -70,7 +81,8 @@ def parse_options_error(parser, options, args):
     missing = [opt for opt in required_options if not getattr(options, opt)]
     if missing:
         parser.print_usage()
-        msg = "Some required option are missing: {0}".format(", ".join(missing))
+        msg = "Some required option are missing: {0}".format(
+            ", ".join(missing))
         raise OptionsError(msg)
 
 
@@ -79,8 +91,8 @@ def run_main(parser, options, args, output=sys.stdout):
        It read in buildnumbers from args or from the build_numbers.txt file.
        And checks if the Builds for them exists on the site."""
     parse_options_error(parser, options, args)
-    #args = '53544'
-    #print("args: {}".format(args))
+    # args = '53544'
+    # print("args: {}".format(args))
     build_numbers = []
     if options.use_number_file:
         pattern = re.compile('([^#]*)(#)(.*)')
@@ -132,20 +144,26 @@ def main(arguments):
     output/*.ini for TurboHUD."""
     parser = optparse.OptionParser(usage=usage)
 
-    parser.add_option('', '--number-file', dest='number_file',
-    default='build_numbers.txt',
-    help='Path to a file containing a list of Buildnumbers. \
-    [build_numbers.txt]')
-    parser.add_option('-f', '--use-number-file', action="store_true",
-    dest='use_number_file', default=False,
-    help=r'Use build_numers.txt as input. [False]')
-    parser.add_option('-4', '--fourthree', dest='fourthree', type="int",
-        default = 3, help='Items must roll with all stats or stats - 1? \n \
+    parser.add_option(
+        '', '--number-file', dest='number_file',
+        default='build_numbers.txt',
+        help='Path to a file containing a list of Buildnumbers. \
+        [build_numbers.txt]')
+    parser.add_option(
+        '-f', '--use-number-file', action="store_true",
+        dest='use_number_file', default=False,
+        help=r'Use build_numers.txt as input. [False]')
+    parser.add_option(
+        '-4', '--fourthree', dest='fourthree', type="int",
+        default=3, help='Items must roll with all stats or stats - 1? \n \
         E.G. If a helm needs Socket, CHC, Int, Vit roll with 4 or 3? [3]')
-    parser.add_option('-b', '--buildtype', dest='buildtype', metavar="STRING",
-        default="build", help=r'Full file or just the build? (Full\Build) [Build]')
-    parser.add_option('-s', '--severalfiles',
-    action="store_false",dest='onefile',
+    parser.add_option(
+        '-b', '--buildtype', dest='buildtype', metavar="STRING",
+        default="build",
+        help=r'Full file or just the build? (Full\Build) [Build]')
+    parser.add_option(
+        '-s', '--severalfiles',
+        action="store_false", dest='onefile',
         default=True, help=r'Write all Builds in several Files. Default is just\
          one File. [True]')
 
@@ -158,13 +176,14 @@ def main(arguments):
     options, args = parser.parse_args(arguments)
     options.buildtype = options.buildtype.lower()
 
-    #print(options)
+    # print(options)
 
     run_main(parser, options, args)
 
 
 def run():
     sys.exit(catch_exceptions(EXIT_CODES, main, sys.argv[1:]))
+
 
 if __name__ == '__main__':
     run()
